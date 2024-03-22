@@ -1,2 +1,2 @@
 # APTMGP
-Calcul de mgp
+Application de Calcul de mgp pour tous 
