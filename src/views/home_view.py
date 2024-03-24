@@ -6,22 +6,20 @@ from PyQt6.QtCore import *
 from PyQt6.QtGui import *
 
 
-class Home_View(QMainWindow):
+class home_View(QMainWindow):
     def __init__(self):
         super().__init__()
     
         try:
-            with open("/home/mitm/Documents/APTMGP/src/resources/styles/home.qss", "r") as style_file:
+            with open("resources/styles/home.qss", "r") as style_file:
                 style_sheet = style_file.read()
-                app.setStyleSheet(style_sheet)
         except FileNotFoundError:
             print("Error: Could not find stylesheet 'styles.qss'")
         
         self.interface()
      
     def interface(self):    
-        # self.setWindowFlag(Qt.WindowType.FramelessWindowHint)
-        self.icon = QIcon("/home/mitm/Documents/APTMGP/src/resources/images/logo.jpg")
+        self.icon = QIcon("resources/images/logo.jpg")
         self.setWindowIcon(self.icon)
         self.setStyleSheet("""
             QMainWindow::title {
@@ -49,17 +47,31 @@ class Home_View(QMainWindow):
         self.frame = QFrame()
         
         # -----------( En-tête )---------
-        self.header_widget = QWidget()
+        #Gradi Joel
+        self.barre_menu = QPushButton()
         self.header_layout = QHBoxLayout()
-        self.header_widget.setLayout(self.header_layout)
 
-        self.pixmap = QPixmap("/home/mitm/Documents/APTMGP/src/resources/images/logo.jpg")
+        self.pixmap = QPixmap("resources/images/logo.jpg")
 
         self.center = QCommandLinkButton(text= "APT MGP", description= "Calculer Votre MGP", icon= QIcon(self.icon))
+        self.center.setStyleSheet(
+            """
+                QCommandLinkButton{
+                    border: none;
+                }
+            """
+        )
+        self.barre_menu.setFixedSize(QSize(30, 30))
+        self.barre_menu.setIcon(QIcon('resources/images/more.png'))
+        self.QVlayout.addLayout(self.header_layout)
+        self.barre_menu.setIconSize(self.barre_menu.sizeHint())
+        self.center.setContentsMargins(20, 20, 20, 20)
         self.center.setContentsMargins(0, 0, 0, 0)
         self.center.setIconSize(QSize(self.center.sizeHint()))
-        self.center.setFont(QFont("ubuntu", 25)), self.center.setObjectName('com') 
-        self.QVlayout.addWidget(self.center)
+        self.center.setFont(QFont("ubuntu", 25)), self.center.setObjectName('com')
+        self.header_layout.addWidget(self.barre_menu)
+        self.header_layout.addSpacerItem(QSpacerItem(30, 40))
+        self.header_layout.addWidget(self.center)
         # self.QVlayout.addStretch(1)
         
         # --------( Body )-------
@@ -82,7 +94,7 @@ class Home_View(QMainWindow):
 
         # Création du bouton avec une icône dans la partie gauche
         self.button = QPushButton()
-        self.button.setIcon(QIcon("/home/mitm/Documents/APTMGP/src/resources/images/plus_plein.png"))
+        self.button.setIcon(QIcon("resources/images/plus_plein.png"))
         self.button.setText("Ajouter")
         self.button_layout = QVBoxLayout()
         self.button_layout.addWidget(self.button)
@@ -92,31 +104,10 @@ class Home_View(QMainWindow):
         self.left_layout.addLayout(self.button_layout)
         
         # creation du QVBoxLayout pour la partie droite
-        self.right_layout = QFormLayout()
-        self.body_layout.addLayout(self.right_layout)
-        self.right_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.rigth_layout = QHBoxLayout()
+        self.body_layout.addLayout(self.rigth_layout)
+        self.rigth_layout.setAlignment(Qt.AlignmentFlag.AlignRight)
         
         # creation du formulaire pour renseigner comment charger le fichier, le code UE, note et credit
-        self.ue_label = QLabel("Code de l'UE :")
-        self.ue_name_edit = QLineEdit()
-        self.ue_name_edit.setPlaceholderText("Entrez votre nom")
-
-        self.credit_label = QLabel("Crédits :")
-        self.credit_edit = QLineEdit()
-        self.credit_edit.setPlaceholderText("Entrez le credit")
-        
-        self.note_label = QLabel("Note /100 :")
-        self.note_edit = QLineEdit()
-        self.note_edit.setPlaceholderText("Entrez votre note sur 100")
-
-        self.right_layout.addRow(self.ue_label, self.ue_name_edit)
-        self.right_layout.addRow(self.credit_label, self.credit_edit)
-        self.right_layout.addRow(self.note_label, self.note_edit)
-        
-        
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    Home = Home_View()
-    Home.show()
-    sys.exit(app.exec())
+        self.form_widget = QWidget()
+        self.QVlayout.addWidget(self.form_widget)
