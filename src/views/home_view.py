@@ -9,14 +9,10 @@ from PyQt6.QtGui import *
 class home_View(QMainWindow):
     def __init__(self):
         super().__init__()
-    
-        try:
-            with open("resources/styles/home.qss", "r") as style_file:
-                style_sheet = style_file.read()
-        except FileNotFoundError:
-            print("Error: Could not find stylesheet 'styles.qss'")
         
         self.interface()
+
+        self.setStyleSheet(open("resources/styles/home.css", "r").read())
      
     def interface(self):    
         self.icon = QIcon("resources/images/logo.jpg")
