@@ -11,7 +11,7 @@ class home_View(QMainWindow):
         super().__init__()
     
         try:
-            with open("/home/mitm/Documents/APTMGP/src/resources/styles/home.qss", "r") as style_file:
+            with open("resources/styles/home.qss", "r") as style_file:
                 style_sheet = style_file.read()
         except FileNotFoundError:
             print("Error: Could not find stylesheet 'styles.qss'")
@@ -20,7 +20,7 @@ class home_View(QMainWindow):
      
     def interface(self):    
         # self.setWindowFlag(Qt.WindowType.FramelessWindowHint)
-        self.icon = QIcon("/home/mitm/Documents/APTMGP/src/resources/images/logo.jpg")
+        self.icon = QIcon("resources/images/logo.jpg")
         self.setWindowIcon(self.icon)
         self.setStyleSheet("""
             QMainWindow::title {
@@ -52,7 +52,7 @@ class home_View(QMainWindow):
         self.header_layout = QHBoxLayout()
         self.header_widget.setLayout(self.header_layout)
 
-        self.pixmap = QPixmap("/home/mitm/Documents/APTMGP/src/resources/images/logo.jpg")
+        self.pixmap = QPixmap("resources/images/logo.jpg")
 
         self.center = QCommandLinkButton(text= "APT MGP", description= "Calculer Votre MGP", icon= QIcon(self.icon))
         self.center.setContentsMargins(0, 0, 0, 0)
@@ -81,7 +81,7 @@ class home_View(QMainWindow):
 
         # Création du bouton avec une icône dans la partie gauche
         self.button = QPushButton()
-        self.button.setIcon(QIcon("/home/mitm/Documents/APTMGP/src/resources/images/plus_plein.png"))
+        self.button.setIcon(QIcon("resources/images/plus_plein.png"))
         self.button.setText("Ajouter")
         self.button_layout = QVBoxLayout()
         self.button_layout.addWidget(self.button)
