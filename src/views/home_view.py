@@ -19,7 +19,6 @@ class home_View(QMainWindow):
         self.interface()
      
     def interface(self):    
-        # self.setWindowFlag(Qt.WindowType.FramelessWindowHint)
         self.icon = QIcon("resources/images/logo.jpg")
         self.setWindowIcon(self.icon)
         self.setStyleSheet("""
@@ -48,17 +47,31 @@ class home_View(QMainWindow):
         self.frame = QFrame()
         
         # -----------( En-tête )---------
-        self.header_widget = QWidget()
+        #Gradi Joel
+        self.barre_menu = QPushButton()
         self.header_layout = QHBoxLayout()
-        self.header_widget.setLayout(self.header_layout)
 
         self.pixmap = QPixmap("resources/images/logo.jpg")
 
         self.center = QCommandLinkButton(text= "APT MGP", description= "Calculer Votre MGP", icon= QIcon(self.icon))
+        self.center.setStyleSheet(
+            """
+                QCommandLinkButton{
+                    border: none;
+                }
+            """
+        )
+        self.barre_menu.setFixedSize(QSize(30, 30))
+        self.barre_menu.setIcon(QIcon('resources/images/more.png'))
+        self.QVlayout.addLayout(self.header_layout)
+        self.barre_menu.setIconSize(self.barre_menu.sizeHint())
+        self.center.setContentsMargins(20, 20, 20, 20)
         self.center.setContentsMargins(0, 0, 0, 0)
         self.center.setIconSize(QSize(self.center.sizeHint()))
-        self.center.setFont(QFont("ubuntu", 25)), self.center.setObjectName('com') 
-        self.QVlayout.addWidget(self.center)
+        self.center.setFont(QFont("ubuntu", 25)), self.center.setObjectName('com')
+        self.header_layout.addWidget(self.barre_menu)
+        self.header_layout.addSpacerItem(QSpacerItem(30, 40))
+        self.header_layout.addWidget(self.center)
         # self.QVlayout.addStretch(1)
         
         # --------( Body )-------
