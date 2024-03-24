@@ -11,7 +11,7 @@ class home_View(QMainWindow):
         super().__init__()
     
         try:
-            with open("resources/styles/home.qss", "r") as style_file:
+            with open("../resources/styles/home.qss", "r") as style_file:
                 style_sheet = style_file.read()
         except FileNotFoundError:
             print("Error: Could not find stylesheet 'styles.qss'")
@@ -19,13 +19,13 @@ class home_View(QMainWindow):
         self.interface()
      
     def interface(self):    
-        self.icon = QIcon("resources/images/logo.jpg")
+        self.icon = QIcon("../resources/images/logo.jpg")
         self.setWindowIcon(self.icon)
         self.setStyleSheet("""
             QMainWindow::title {
                 padding-left: 5px;
                 padding-top: 9px;
-                background-image: url("chemin/vers/votre/icone.png");
+                background-image: url("./resources/images/logo.png");
                 background-repeat: no-repeat;
                 background-position: left center;
             }
@@ -51,7 +51,7 @@ class home_View(QMainWindow):
         self.barre_menu = QPushButton()
         self.header_layout = QHBoxLayout()
 
-        self.pixmap = QPixmap("resources/images/logo.jpg")
+        self.pixmap = QPixmap("./resources/images/logo.jpg")
 
         self.center = QCommandLinkButton(text= "APT MGP", description= "Calculer Votre MGP", icon= QIcon(self.icon))
         self.center.setStyleSheet(
@@ -62,7 +62,7 @@ class home_View(QMainWindow):
             """
         )
         self.barre_menu.setFixedSize(QSize(30, 30))
-        self.barre_menu.setIcon(QIcon('resources/images/more.png'))
+        self.barre_menu.setIcon(QIcon('./resources/images/more.png'))
         self.QVlayout.addLayout(self.header_layout)
         self.barre_menu.setIconSize(self.barre_menu.sizeHint())
         self.center.setContentsMargins(20, 20, 20, 20)
@@ -94,7 +94,7 @@ class home_View(QMainWindow):
 
         # Création du bouton avec une icône dans la partie gauche
         self.button = QPushButton()
-        self.button.setIcon(QIcon("resources/images/plus_plein.png"))
+        self.button.setIcon(QIcon("../resources/images/plus_plein.png"))
         self.button.setText("Ajouter")
         self.button_layout = QVBoxLayout()
         self.button_layout.addWidget(self.button)
