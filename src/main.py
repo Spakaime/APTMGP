@@ -1,4 +1,5 @@
 import sys
+
 from PyQt6.QtWidgets import QApplication, QMainWindow, QFrame
 from PyQt6.QtGui import QPainter, QPen
 from PyQt6.QtCore import Qt
@@ -17,25 +18,9 @@ class CustomFrame(QFrame):
         x = self.width() // 4
         painter.drawLine(x, 0, x, self.height())
 
-class Home_View(QMainWindow):
-    def __init__(self):
-        super().__init__()
-
-        self.interface()
-
-    def interface(self):
-        self.setWindowTitle("APT MGP")
-        self.setGeometry(100, 100, 900, 800)
-
-        # Création du QFrame
-        frame = CustomFrame(self)
-        frame.setGeometry(self.width() // 4 - 1, 0, 2, self.height())
-
-        self.show()
-
-
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    Home = home_View()
-    Home.show()
+    view = Home_View()
+    view.show()
     sys.exit(app.exec())
+

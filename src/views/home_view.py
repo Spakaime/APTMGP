@@ -10,7 +10,11 @@ class home_View(QMainWindow):
     def __init__(self):
         super().__init__()
     
-        self.setStyleSheet(open("resources/styles/home.css", "r").read())
+        try:
+            with open("resources/styles/home.qss", "r") as style_file:
+                style_sheet = style_file.read()
+        except FileNotFoundError:
+            print("Error: Could not find stylesheet 'styles.qss'")
         
         self.interface()
      
@@ -57,8 +61,7 @@ class home_View(QMainWindow):
                 }
             """
         )
-        self.barre_menu.setObjectName("menu")
-        self.barre_menu.setFixedSize(QSize(40, 40))
+        self.barre_menu.setFixedSize(QSize(30, 30))
         self.barre_menu.setIcon(QIcon('resources/images/more.png'))
         self.QVlayout.addLayout(self.header_layout)
         self.barre_menu.setIconSize(self.barre_menu.sizeHint())
