@@ -92,16 +92,26 @@ class Home_View(QMainWindow):
         self.left_layout.addLayout(self.button_layout)
         
         # creation du QVBoxLayout pour la partie droite
-        self.rigth_layout = QHBoxLayout()
-        self.body_layout.addLayout(self.rigth_layout)
-        self.rigth_layout.setAlignment(Qt.AlignmentFlag.AlignRight)
+        self.right_layout = QFormLayout()
+        self.body_layout.addLayout(self.right_layout)
+        self.right_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
         
         # creation du formulaire pour renseigner comment charger le fichier, le code UE, note et credit
-        self.form_widget = QWidget()
-        self.QVlayout.addWidget(self.form_widget)
+        self.ue_label = QLabel("Code de l'UE :")
+        self.ue_name_edit = QLineEdit()
+        self.ue_name_edit.setPlaceholderText("Entrez votre nom")
 
+        self.credit_label = QLabel("Crédits :")
+        self.credit_edit = QLineEdit()
+        self.credit_edit.setPlaceholderText("Entrez le credit")
         
-        
+        self.note_label = QLabel("Note /100 :")
+        self.note_edit = QLineEdit()
+        self.note_edit.setPlaceholderText("Entrez votre note sur 100")
+
+        self.right_layout.addRow(self.ue_label, self.ue_name_edit)
+        self.right_layout.addRow(self.credit_label, self.credit_edit)
+        self.right_layout.addRow(self.note_label, self.note_edit)
         
         
 
