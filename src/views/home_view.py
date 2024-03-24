@@ -98,14 +98,3 @@ class home_View(QMainWindow):
         # creation du formulaire pour renseigner comment charger le fichier, le code UE, note et credit
         self.form_widget = QWidget()
         self.QVlayout.addWidget(self.form_widget)
-
-        
-        
-        
-        
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    Home = Home_View()
-    Home.show()
-    sys.exit(app.exec())
