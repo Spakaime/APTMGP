@@ -13,11 +13,11 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Calcul MGP")
         self.setMinimumSize(QSize(800, 580))
     	
-        # self.logo_label = QLabel()
-        # self.logo_label.setPixmap(QPixmap("logo.png"))
+        self.logo_label = QLabel()
+        self.logo_label.setPixmap(QPixmap("/home/mitm/Documents/APTMGP/src/resources/images/logo_1.jpg"))
         
         try:
-            with open("style.qss", "r") as style_file:
+            with open("/home/mitm/Documents/APTMGP/src/resources/styles/style.qss", "r") as style_file:
                 style_sheet = style_file.read()
                 app.setStyleSheet(style_sheet)
         except FileNotFoundError:
@@ -42,8 +42,11 @@ class MainWindow(QMainWindow):
         self.title_label = QLabel("Calcul MGP")
         self.title_label.setFont(QFont("Arial", 18))
         self.header_layout.addWidget(self.title_label)
-
+ 
         self.layout.addWidget(self.header_widget)
+        
+        self.frame = QFrame(self.header_widget)
+        self.frame.setFrameShape(QFrame.Shape.VLine)
 
         # **Onglets**
         self.tab_widget = QTabWidget()
