@@ -6,14 +6,13 @@ from PyQt6.QtCore import *
 from PyQt6.QtGui import *
 
 
-class Home_View(QMainWindow):
+class home_View(QMainWindow):
     def __init__(self):
         super().__init__()
     
         try:
             with open("/home/mitm/Documents/APTMGP/src/resources/styles/home.qss", "r") as style_file:
                 style_sheet = style_file.read()
-                app.setStyleSheet(style_sheet)
         except FileNotFoundError:
             print("Error: Could not find stylesheet 'styles.qss'")
         
